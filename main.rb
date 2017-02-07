@@ -104,9 +104,9 @@ p arr3
 
 p "----------------range--------------";
 # レンジ
-ran1 = 1..10
-p ran1.to_a
-ran2 = 1...10
+ran1 = 1..10	#include 10
+p ran1.to_a	#to array
+ran2 = 1...10	#not include 10
 p ran2.to_a
 # 配列に用いる場合、Forループの様に使える
 total = 0
@@ -117,3 +117,167 @@ p total
 # 数字以外
 chars1 = "a".."f"; p chars1.to_a
 chars2 = "G".."L"; p chars2.to_a
+p "----------------hash--------------";
+# 配列の要素に名前をつけたもの
+fruits = { "apple" => 5, "banana" => 3}
+p fruits["apple"]
+fruits["orange"] = 8
+wishlist = Hash.new()
+# 配列同様にイテレーションできる
+fruits.each do |i,j|
+p "%s: %d" % [i,j]
+end
+pricelist =fruits.select do |i,j|
+j > 4
+end
+p pricelist
+
+p "----------------じょうけんぶんき--------------";
+score = 75
+if score > 90 then
+	p "Excellent"
+elsif score > 70 then
+	p "Good(" + score.to_s + ")"
+else
+	p "bad"
+end
+
+is_completed = false
+unless is_completed
+	p "It's happened error"
+end
+# if文の入れ替え
+is_pass = true
+p "It's passed" if is_pass
+
+
+=begin
+p "Please input your question"
+p "[1] What your name"
+p "[2] How old are you"
+p "[3] What do you like food"
+p "[0] Nothing"
+p ">>>"
+input = gets
+case input.to_i
+when 1
+	p "I'm Duc"
+when 2
+	p "I'm 23 years old"
+when 3
+	p "I love all of Vietnam food"
+else
+	p "I did't understand"
+end
+=end
+p "----------------ひかくえんざんし--------------";
+p 1 == 1
+p 2 != 3
+p 10 > 5
+p 12 <= 100
+p "A" < "a"
+# UFO演算子
+p 10 <=> 1 # left higher than right  return 1
+p 1 <=> 1	# left equal right return 0
+p 1 <=> 10 # left lower than right return -1
+
+p "----------------ループ(for)-------------";
+# 基本的なループ
+10.times do |i|
+	print (i ** 2).to_s + ", "
+end
+print ("\n")
+# レンジを使うループ
+for i in 1..5
+	print i.to_s + ", "
+end
+print ("\n")
+for i in 1...5
+	print i.to_s + ", "
+end
+print ("\n")
+
+p "----------------ループ(while)-------------";
+times = 0
+total = 1.0
+while total < 2
+	total *= 1.03
+	times += 1
+end
+p "%d回(%f)" % [times, total]
+
+times = 0
+total = 1.0
+until total < 0.05
+	total /= 2
+	times += 1
+end
+p "%d回(%f)" % [times, total]
+
+p "----------------method-------------";
+def func1(apple, orange)
+r = apple * 100
+r += orange * 80
+return r
+end
+p func1(3, 5) # <= func1 3, 5
+
+def func2(apple, orange, basket=1)
+r = apple * 100
+r += orange * 80
+r += basket * 300
+end
+p func2(2, 4) # <= func2 2,4
+def func3(name, *favorite)
+favorite
+end
+p func3("ishida", "Ruby","PHP","Javascript")
+
+p "----------------block-------------";
+# ブロックとは処理を独立させたもの
+# do ~ endと{ ~ }は等価
+(1..5).each do |counter|
+	puts "iteration #{counter}"
+end
+(1..5).each { |counter|
+	puts "iteration #{counter}"
+}
+p "----------------use block-------------";
+a = [ "a", "b", "c", "d" ]
+p a.collect() {|x|
+x + "!"
+}
+
+array = [1, 2, 3, 4, 5]
+doubled = array.map() do |element|
+element * 2
+end
+puts doubled
+p "----------------YIELD-------------";
+def do3times
+yield
+yield
+yield
+end
+# 上のメソッドは使う人によって自由に変更できる
+do3times() {
+puts "I’m a Japanese"
+}
+do3times() {
+puts "I’m a Vietnamese"
+}
+p "----------------CLASS & Instance-------------";
+class Human
+	def initialize(name, age = 0)
+		@name = name
+		@age = age
+	end
+	def name=(name)
+		@name = name
+	end
+	def name
+		@name
+	end
+end
+man = Human.new "ishida", 31
+p man
