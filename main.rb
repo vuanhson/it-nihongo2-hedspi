@@ -55,11 +55,11 @@ p line
 p "----------------symbol-----------------------";
 
 # 下記例は同じ意味
-lang1 = "japanese"
+lang1 = "japanese"  # "" use more memory
 if lang1 == "japanese"
 	p "Hello japan"
 end
-lang2 = :vietnamese
+lang2 = :vietnamese # : Use less memory
 if lang2 == :vietnamese
 	p "Hello vietnam"
 end
@@ -68,3 +68,19 @@ puts "japanse".object_id
 puts "japanse".object_id
 puts :vietnamese.object_id
 puts :vietnamese.object_id
+
+p "----------------Array-----------------------";
+p Array.new(3)
+p Array.new(3,5)
+
+arr2 = Array.new(3) do |i| 
+	i*2
+end
+p arr2
+p "----------------テキスト-----------------------";
+# テキストから配列をつくる
+p "Ruby Java Python".split
+p "100, 212, 345".split(",")
+# 配列からテキストを作る
+p [123,45,67,8,90].join
+p ["I","am","a","Vietnamese"].join(" ")
