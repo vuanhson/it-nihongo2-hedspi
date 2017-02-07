@@ -84,3 +84,36 @@ p "100, 212, 345".split(",")
 # 配列からテキストを作る
 p [123,45,67,8,90].join
 p ["I","am","a","Vietnamese"].join(" ")
+
+p "----------------イテレーション(iteration)--------------";
+arr = [1,2,3,4,5]
+arr.each do |x|
+	x *= 10
+	p x
+end
+
+arr2 = arr.select do |i|
+	i % 2 == 0
+end
+p arr2
+
+arr3 = arr.collect do |i|
+	i ** 2
+end
+p arr3
+
+p "----------------range--------------";
+# レンジ
+ran1 = 1..10
+p ran1.to_a
+ran2 = 1...10
+p ran2.to_a
+# 配列に用いる場合、Forループの様に使える
+total = 0
+(1..10).to_a.each do |i|
+total += i
+end
+p total
+# 数字以外
+chars1 = "a".."f"; p chars1.to_a
+chars2 = "G".."L"; p chars2.to_a
