@@ -1,0 +1,554 @@
+  [1m[36m (16.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (17.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateBooks (20170307020624)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "number_of_pages" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170307020624"]]
+  [1m[35m (13.5ms)[0m  commit transaction
+Migrating to CreateAuthors (20170307022728)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "age" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170307022728"]]
+  [1m[35m (14.7ms)[0m  commit transaction
+Migrating to DeviseCreateUsers (20170307030820)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170307030820"]]
+  [1m[36m (14.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddNameAndAge (20170307040440)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "users" ADD "name" varchar[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "age" integer
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.5ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_name" ON "users" ("name")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170307040440"]]
+  [1m[36m (16.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateImages (20170404030835)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "title" varchar, "file" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170404030835"]]
+  [1m[36m (17.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_name' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_name' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+
+
+Started GET "/" for 1.55.245.78 at 2017-04-18 03:34:08 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 1235ms (Views: 1213.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 1.55.245.78 at 2017-04-18 03:34:09 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/static_pages.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 1.55.245.78 at 2017-04-18 03:34:09 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 1.55.245.78 at 2017-04-18 03:34:09 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/images.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 1.55.245.78 at 2017-04-18 03:34:10 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/static_pages.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 1.55.245.78 at 2017-04-18 03:34:10 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/authors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 1.55.245.78 at 2017-04-18 03:34:10 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 1.55.245.78 at 2017-04-18 03:34:10 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/scaffolds.self-d2e5ccad1506299feea3a35bfb7c525e101bb3b214303715deb675fdc539948b.css?body=1" for 1.55.245.78 at 2017-04-18 03:34:10 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/authors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 1.55.245.78 at 2017-04-18 03:34:10 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 1.55.245.78 at 2017-04-18 03:34:10 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/users/sign_up" for 1.55.245.78 at 2017-04-18 03:34:14 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/shared/_links.html.erb (7.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (62.7ms)
+Completed 200 OK in 125ms (Views: 98.9ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/users" for 1.55.245.78 at 2017-04-18 03:34:27 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IzMBisjnw5G10Zh12qErbkVGPJ+xe4FuBxX8n7/y7KkuEzqFgPpBJJodxafVVv/S+xly8Jo16uZZ3YbXzrQoyQ==", "user"=>{"email"=>"vuson@reg.vn", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "name"=>"Vu Son", "age"=>"22"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'vuson@reg.vn' LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "name", "age", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["email", "vuson@reg.vn"], ["encrypted_password", "$2a$11$OWO9ikOMMlKjmfn7yLQC4eMQW2M7ZSvVPEF3WgoXzJbHU2fi6WADy"], ["name", "Vu Son"], ["age", 22], ["created_at", "2017-04-18 03:34:27.668581"], ["updated_at", "2017-04-18 03:34:27.668581"]]
+  [1m[36m (17.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2017-04-18 03:34:27.690857"], ["current_sign_in_at", "2017-04-18 03:34:27.690857"], ["last_sign_in_ip", "1.55.245.78"], ["current_sign_in_ip", "1.55.245.78"], ["sign_in_count", 1], ["updated_at", "2017-04-18 03:34:27.692037"], ["id", 1]]
+  [1m[35m (16.9ms)[0m  commit transaction
+Redirected to https://itnihongo-vusonhedspi.c9users.io/
+Completed 302 Found in 259ms (ActiveRecord: 36.4ms)
+
+
+Started GET "/" for 1.55.245.78 at 2017-04-18 03:34:27 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (0.1ms)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 39ms (Views: 37.7ms | ActiveRecord: 0.7ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateImageComments (20170418033517)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "image_comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "image_id" integer, "comment" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170418033517"]]
+  [1m[36m (15.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_name' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_name' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+
+
+Started GET "/" for 1.55.245.78 at 2017-04-18 03:42:50 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (2.9ms)
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 200 OK in 619ms (Views: 592.8ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/image_comments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 1.55.245.78 at 2017-04-18 03:42:51 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/assets/image_comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 1.55.245.78 at 2017-04-18 03:42:51 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+
+
+Started GET "/images" for 1.55.245.78 at 2017-04-18 03:43:11 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images"
+  Rendered images/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 92ms (Views: 69.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/images/new" for 1.55.245.78 at 2017-04-18 03:43:14 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered images/_form.html.erb (33.9ms)
+  Rendered images/new.html.erb within layouts/application (40.3ms)
+Completed 200 OK in 90ms (Views: 72.1ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/images" for 1.55.245.78 at 2017-04-18 03:43:30 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UjzRqxfEbhE9eIO4dGLQ/cBKrTkSBq+Mveq/x4czA99fHOqkX9nspBK03mp7lQRBfhXjVjlIxATjIsWP9nXHvw==", "image"=>{"title"=>"hello", "file"=>#<ActionDispatch::Http::UploadedFile:0x007ff4ecbfac28 @tempfile=#<Tempfile:/tmp/RackMultipart20170418-3796-qyooj.jpg>, @original_filename="IMG_20170415_101730.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image[file]\"; filename=\"IMG_20170415_101730.jpg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Image"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "images" ("title", "file", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "hello"], ["file", "IMG_20170415_101730.jpg"], ["user_id", 1], ["created_at", "2017-04-18 03:43:30.360352"], ["updated_at", "2017-04-18 03:43:30.360352"]]
+  [1m[36m (15.3ms)[0m  [1mcommit transaction[0m
+Redirected to https://itnihongo-vusonhedspi.c9users.io/images/1
+Completed 302 Found in 52ms (ActiveRecord: 16.5ms)
+
+
+Started GET "/images/1" for 1.55.245.78 at 2017-04-18 03:43:30 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mImage Load (0.3ms)[0m  SELECT  "images".* FROM "images" WHERE "images"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered images/show.html.erb within layouts/application (29.7ms)
+Completed 200 OK in 90ms (Views: 72.3ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/image_comments" for 1.55.245.78 at 2017-04-18 03:43:41 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImageCommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Dg1zoycV+g+AbXvu2/OUgQ4SXQUnoWOBbvlYwxXG1UkDLUisbwh4uq+hJjzUBEA9sE0TagzvCAkwMSKLZIARKQ==", "image_comment"=>{"comment"=>"hello comment", "image_id"=>"1"}, "commit"=>"Create Image comment"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "image_comments" ("image_id", "comment", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["image_id", 1], ["comment", "hello comment"], ["created_at", "2017-04-18 03:43:41.887711"], ["updated_at", "2017-04-18 03:43:41.887711"]]
+  [1m[36m (14.5ms)[0m  [1mcommit transaction[0m
+Redirected to https://itnihongo-vusonhedspi.c9users.io/image_comments/1
+Completed 302 Found in 22ms (ActiveRecord: 15.1ms)
+
+
+Started GET "/image_comments/1" for 1.55.245.78 at 2017-04-18 03:43:42 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImageCommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mImageComment Load (0.5ms)[0m  SELECT  "image_comments".* FROM "image_comments" WHERE "image_comments"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered image_comments/show.html.erb within layouts/application (1.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 47ms (Views: 44.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/image_comments" for 1.55.245.78 at 2017-04-18 03:43:46 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImageCommentsController#index as HTML
+  [1m[35mImageComment Load (0.3ms)[0m  SELECT "image_comments".* FROM "image_comments"
+  Rendered image_comments/index.html.erb within layouts/application (3.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 49ms (Views: 46.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/images" for 1.55.245.78 at 2017-04-18 03:44:00 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered images/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 57ms (Views: 52.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/image_comments/1" for 1.55.245.78 at 2017-04-18 03:44:22 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImageCommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mImageComment Load (1.4ms)[0m  SELECT  "image_comments".* FROM "image_comments" WHERE "image_comments"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered image_comments/show.html.erb within layouts/application (0.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 55ms (Views: 50.8ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/image_comments" for 1.55.245.78 at 2017-04-18 03:44:26 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImageCommentsController#index as HTML
+  [1m[35mImageComment Load (0.4ms)[0m  SELECT "image_comments".* FROM "image_comments"
+  Rendered image_comments/index.html.erb within layouts/application (2.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 33ms (Views: 31.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/images" for 1.55.245.78 at 2017-04-18 03:44:38 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered images/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 36ms (Views: 33.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/images/new" for 1.55.245.78 at 2017-04-18 03:45:33 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered images/_form.html.erb (2.7ms)
+  Rendered images/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 42ms (Views: 39.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/images" for 1.55.245.78 at 2017-04-18 03:45:52 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Ye8CMAmkeQjicF9MsDeW2tnw+Y31/rMCbuknagGgo8Vszzk/Qbn7vc28Ap6/wEJmZ6+34t6w2IowIV0icOZnpQ==", "image"=>{"title"=>"lllllll", "file"=>#<ActionDispatch::Http::UploadedFile:0x007ff4f1059ea0 @tempfile=#<Tempfile:/tmp/RackMultipart20170418-3796-13pgc8z.jpg>, @original_filename="11059923_1604945166420449_519076212604653240_n.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image[file]\"; filename=\"11059923_1604945166420449_519076212604653240_n.jpg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Image"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "images" ("title", "file", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "lllllll"], ["file", "11059923_1604945166420449_519076212604653240_n.jpg"], ["user_id", 1], ["created_at", "2017-04-18 03:45:52.997690"], ["updated_at", "2017-04-18 03:45:52.997690"]]
+  [1m[35m (18.4ms)[0m  commit transaction
+Redirected to https://itnihongo-vusonhedspi.c9users.io/images/2
+Completed 302 Found in 35ms (ActiveRecord: 19.3ms)
+
+
+Started GET "/images/2" for 1.55.245.78 at 2017-04-18 03:45:53 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT  "images".* FROM "images" WHERE "images"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered images/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 48ms (Views: 44.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/images/1" for 1.55.245.78 at 2017-04-18 03:46:01 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mImage Load (0.3ms)[0m  SELECT  "images".* FROM "images" WHERE "images"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered images/show.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 43ms (Views: 38.3ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/image_comments" for 1.55.245.78 at 2017-04-18 03:46:10 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImageCommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SxSYnTSZ+/A3yKv0IoGoUH+qF42vfQl16OQpkuNo6NpGNKOSfIR5RRgE9iYtdnzswfVZ4oQzYv22LFPaki4sug==", "image_comment"=>{"comment"=>"salds;ald;'sald';sds", "image_id"=>"1"}, "commit"=>"Create Image comment"}
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "image_comments" ("image_id", "comment", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["image_id", 1], ["comment", "salds;ald;'sald';sds"], ["created_at", "2017-04-18 03:46:10.035686"], ["updated_at", "2017-04-18 03:46:10.035686"]]
+  [1m[36m (15.3ms)[0m  [1mcommit transaction[0m
+Redirected to https://itnihongo-vusonhedspi.c9users.io/image_comments/2
+Completed 302 Found in 23ms (ActiveRecord: 16.0ms)
+
+
+Started GET "/image_comments/2" for 1.55.245.78 at 2017-04-18 03:46:10 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImageCommentsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mImageComment Load (0.3ms)[0m  SELECT  "image_comments".* FROM "image_comments" WHERE "image_comments"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered image_comments/show.html.erb within layouts/application (1.0ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 73ms (Views: 69.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/image_comments" for 1.55.245.78 at 2017-04-18 03:46:13 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImageCommentsController#index as HTML
+  [1m[35mImageComment Load (0.5ms)[0m  SELECT "image_comments".* FROM "image_comments"
+  Rendered image_comments/index.html.erb within layouts/application (3.8ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 194ms (Views: 191.6ms | ActiveRecord: 0.8ms)
+
+
+Started DELETE "/image_comments/2" for 1.55.245.78 at 2017-04-18 03:47:11 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImageCommentsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"yssjy6xirrleql4LooUdqrZblmEnKRqodarJeme5QoXH6xjE5H8sDHFmA9mtcskWCATYDgxncSArYrMyFv+G5Q==", "id"=>"2"}
+  [1m[35mImageComment Load (0.3ms)[0m  SELECT  "image_comments".* FROM "image_comments" WHERE "image_comments"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "image_comments" WHERE "image_comments"."id" = ?  [["id", 2]]
+  [1m[36m (16.9ms)[0m  [1mcommit transaction[0m
+Redirected to https://itnihongo-vusonhedspi.c9users.io/image_comments
+Completed 302 Found in 23ms (ActiveRecord: 17.6ms)
+
+
+Started GET "/image_comments" for 1.55.245.78 at 2017-04-18 03:47:11 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImageCommentsController#index as HTML
+  [1m[35mImageComment Load (0.3ms)[0m  SELECT "image_comments".* FROM "image_comments"
+  Rendered image_comments/index.html.erb within layouts/application (1.9ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 39ms (Views: 38.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/images" for 1.55.245.78 at 2017-04-18 03:47:22 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images"[0m
+  Rendered images/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 55ms (Views: 51.2ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/images/1" for 1.55.245.78 at 2017-04-18 03:47:39 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"zSGP6hHNM+7ikhbIkBRhn5v223G5JGsPqxKPHMTHkZfAAbTlWdCxW81eSxqf47UjJamVHpJqAIf12vVUtYFV9w==", "id"=>"1"}
+  [1m[35mImage Load (0.3ms)[0m  SELECT  "images".* FROM "images" WHERE "images"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mDELETE FROM "images" WHERE "images"."id" = ?[0m  [["id", 1]]
+  [1m[35m (12.6ms)[0m  commit transaction
+Redirected to https://itnihongo-vusonhedspi.c9users.io/images
+Completed 302 Found in 21ms (ActiveRecord: 13.6ms)
+
+
+Started GET "/images" for 1.55.245.78 at 2017-04-18 03:47:39 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.4ms)[0m  SELECT "images".* FROM "images"
+  Rendered images/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 41ms (Views: 37.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/images/1" for 1.55.245.78 at 2017-04-18 03:47:47 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT  "images".* FROM "images" WHERE "images"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 404 Not Found in 3ms (ActiveRecord: 0.2ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Image with 'id'=1):
+  app/controllers/images_controller.rb:68:in `set_image'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (40.0ms)
+
+
+Started GET "/images/2" for 1.55.245.78 at 2017-04-18 03:47:52 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mImage Load (0.2ms)[0m  SELECT  "images".* FROM "images" WHERE "images"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered images/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 42ms (Views: 37.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/images/2" for 1.55.245.78 at 2017-04-18 03:52:13 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mImage Load (0.4ms)[0m  [1mSELECT  "images".* FROM "images" WHERE "images"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImageComment Load (0.4ms)[0m  SELECT "image_comments".* FROM "image_comments" WHERE "image_comments"."image_id" = ?  ORDER BY created_at DESC  [["image_id", 2]]
+  Rendered images/show.html.erb within layouts/application (21.5ms)
+Completed 200 OK in 115ms (Views: 58.3ms | ActiveRecord: 3.4ms)
+
+
+Started POST "/image_comments" for 1.55.245.78 at 2017-04-18 03:52:19 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImageCommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"6JKXlQRLBS+pz1uz1AXnBRC4YW/Z0WlSrPqlsDapaBXlsqyaTFaHmoYDBmHb8jO5rucvAPKfAtryMt/4R++sdQ==", "image_comment"=>{"comment"=>";lsdfk;lskf;lsdkfsdkf;lsd", "image_id"=>"2"}, "commit"=>"Create Image comment"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "image_comments" ("image_id", "comment", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["image_id", 2], ["comment", ";lsdfk;lskf;lsdkfsdkf;lsd"], ["user_id", 1], ["created_at", "2017-04-18 03:52:19.481438"], ["updated_at", "2017-04-18 03:52:19.481438"]]
+  [1m[35m (15.7ms)[0m  commit transaction
+Redirected to https://itnihongo-vusonhedspi.c9users.io/images/2
+Completed 302 Found in 26ms (ActiveRecord: 16.8ms)
+
+
+Started GET "/images/2" for 1.55.245.78 at 2017-04-18 03:52:21 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT  "images".* FROM "images" WHERE "images"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImageComment Load (0.1ms)[0m  SELECT "image_comments".* FROM "image_comments" WHERE "image_comments"."image_id" = ?  ORDER BY created_at DESC  [["image_id", 2]]
+  Rendered images/show.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 35ms (Views: 31.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/image_comments" for 1.55.245.78 at 2017-04-18 03:52:34 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImageCommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VYCf5FA91MnkKsGFZj8OrnwjzeadNdkSh+PW2hzDnjBYoKTrGCBWfMvmnFdpyNoSwnyDibZ7sprZK6ySbYVaUA==", "image_comment"=>{"comment"=>"abcdeffffff", "image_id"=>"2"}, "commit"=>"Create Image comment"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "image_comments" ("image_id", "comment", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["image_id", 2], ["comment", "abcdeffffff"], ["user_id", 1], ["created_at", "2017-04-18 03:52:34.468556"], ["updated_at", "2017-04-18 03:52:34.468556"]]
+  [1m[35m (15.2ms)[0m  commit transaction
+Redirected to https://itnihongo-vusonhedspi.c9users.io/images/2
+Completed 302 Found in 23ms (ActiveRecord: 15.9ms)
+
+
+Started GET "/images/2" for 1.55.245.78 at 2017-04-18 03:52:34 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT  "images".* FROM "images" WHERE "images"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImageComment Load (0.1ms)[0m  SELECT "image_comments".* FROM "image_comments" WHERE "image_comments"."image_id" = ?  ORDER BY created_at DESC  [["image_id", 2]]
+  Rendered images/show.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 40ms (Views: 36.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/images/2" for 1.55.245.78 at 2017-04-18 03:54:06 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT  "images".* FROM "images" WHERE "images"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImageComment Load (0.4ms)[0m  SELECT "image_comments".* FROM "image_comments" WHERE "image_comments"."image_id" = ?  ORDER BY created_at DESC  [["image_id", 2]]
+  Rendered images/show.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 54ms (Views: 49.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/images/2" for 1.55.245.78 at 2017-04-18 03:54:28 +0000
+Cannot render console from 1.55.245.78! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mImage Load (0.5ms)[0m  [1mSELECT  "images".* FROM "images" WHERE "images"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mImageComment Load (0.2ms)[0m  SELECT "image_comments".* FROM "image_comments" WHERE "image_comments"."image_id" = ?  ORDER BY created_at DESC  [["image_id", 2]]
+  Rendered images/show.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 57ms (Views: 50.2ms | ActiveRecord: 1.2ms)
